@@ -15,5 +15,13 @@
   "bugs": {
     "url": "https://github.com/alexram1313/node-rpi-doorsms/issues"
   },
-  "homepage": "https://github.com/alexram1313/node-rpi-doorsms#readme"
+  "homepage": "https://github.com/alexram1313/node-rpi-doorsms#readme",
+  "dependencies": {
+    "debounce": "^1.0.2",
+    "express": "^4.15.2",
+    "node-mailer": "^0.1.1",
+    "nodemailer": "^4.0.1",
+    "nodemailer-smtp-transport": "^2.7.4",
+    "rpi-gpio": "^0.8.1"
+  }
 }
