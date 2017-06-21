@@ -6,14 +6,42 @@ var smtp = require('./api/mail');
 const msg = '\nDoor was ';
 const states = {false: 'closed', true:'opened'}
 
+//Historical data
+var events = new Array();
+
+function postMsg(text){
+    var time = new Date(new Date().getTime()).toLocaleTimeString();
+    var msgToSend = text + ' at ' + time;
+    smtp.sendMail(msgToSend);
+    console.log(msgToSend);
+    events.push(msgToSend);
+}
+
+
 //Instantiate our RPi doorsms API instance
 var doorsms = rpi(5, function(openState){
-    smtp.sendMail(msg+states[openState]);
+    postMsg(msg+states[openState]);
 });
 
 
+//Routing
+app.get('/', function(req, res){
+    res.status(200).json({message:"Connected!"});
+})
 
+app.get('/arm/:state', function(req, res){
+    rpi.setArmedState(req.params.state, function(state){
+        var msgToSend = '\nSystem '+((!state)?'dis':'')+'armed'
+        postMsg(msgToSend);
+        res.status(200).json({armed:state});
+    });
+})
 
+app.get('/events', function(req, res){
+    rpi.setArmedState(req.params.state, function(state){
+        res.status(200).json({events:events});
+    });
+})
 
 //Cleanup
 function exitHandler(options, err) {

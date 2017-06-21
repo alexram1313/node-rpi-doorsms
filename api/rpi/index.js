@@ -28,7 +28,6 @@ function createRpiInstance(pin, stateChangeCallback){
 
     function setArmedState(arm, callback){
         armed = arm;
-        console.log('System '+((!armed)?'dis':'')+'armed');
         callback(armed);
     }
 }
