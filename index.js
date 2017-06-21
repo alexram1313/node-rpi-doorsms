@@ -30,7 +30,7 @@ app.get('/', function(req, res){
 })
 
 app.get('/arm/:state', function(req, res){
-    rpi.setArmedState(req.params.state, function(state){
+    doorsms.setArmedState(req.params.state, function(state){
         var msgToSend = '\nSystem '+((!state)?'dis':'')+'armed'
         postMsg(msgToSend);
         res.status(200).json({armed:state});
@@ -38,13 +38,13 @@ app.get('/arm/:state', function(req, res){
 })
 
 app.get('/events', function(req, res){
-        res.status(200).json({events:events});
+    res.status(200).json({events:events});
 })
 
 //Cleanup
 function exitHandler(options, err) {
     if (options.cleanup){
-        doorsms.destroyRpiInstance();
+        options.doorsms.destroyRpiInstance();
         console.log('Cleaned!');
     }
     if (err) console.log(err.stack);
@@ -52,13 +52,13 @@ function exitHandler(options, err) {
 }
 
 //do something when app is closing
-process.on('exit', exitHandler.bind(null,{cleanup:true}));
+process.on('exit', exitHandler.bind(null,{doorsms:doorsms, cleanup:true}));
 
 //catches ctrl+c event
-process.on('SIGINT', exitHandler.bind(null, {exit:true}));
+process.on('SIGINT', exitHandler.bind(null, {doorsms:doorsms, exit:true}));
 
 //catches uncaught exceptions
-process.on('uncaughtException', exitHandler.bind(null, {exit:true}));
+process.on('uncaughtException', exitHandler.bind(null, {doorsms:doorsms, exit:true}));
 
 
 //Start Server
