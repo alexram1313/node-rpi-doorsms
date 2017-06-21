@@ -20,7 +20,7 @@ var createRpiInstance = function (pin, stateChangeCallback){
 
         
     }, 115));
-    gpio.setup(pin, gpio.DIR_HIGH, gpio.EDGE_BOTH);
+    gpio.setup(pin, gpio.DIR_IN, gpio.EDGE_BOTH);
 
     return {
         destroyRpiInstance: function (){
