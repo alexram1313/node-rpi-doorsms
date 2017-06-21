@@ -40,7 +40,7 @@ module.exports = {
                 if (error) {
                     return console.log(error);
                 }
-                console.log(text);
+                // console.log(text);
                 // console.log('Message %s sent: %s', info.messageId, info.response);
             });
         }
