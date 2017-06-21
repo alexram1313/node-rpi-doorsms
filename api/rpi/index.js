@@ -4,16 +4,16 @@ function createRpiInstance(pin, stateChangeCallback){
     var gpio = require('rpi-gpio');
     var debounce = require('debounce');
 
-    var prev_state = true;
+    var next_state = false;
     gpio.on('change', debounce(function(channel, value) {
-        if (value != prev_state){
-            prev_state = value;
+        if (value == next_state){
+            next_state = !value;
             if (typeof(stateChangeCallback) === 'function'){
                 //callback(isClosed)
                 stateChangeCallback(value);
             }
             else{
-                console.log('Channel ' + channel + ' closed state is now ' + value);
+                console.log('Channel ' + channel + ' open state is now ' + value);
             }
         }
 
