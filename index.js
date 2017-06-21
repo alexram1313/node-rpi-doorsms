@@ -23,19 +23,27 @@ var doorsms = rpi(5, function(openState){
     postMsg(msg+states[openState]);
 });
 
-console.log(doorsms);
-
 //Routing
 app.get('/', function(req, res){
     res.status(200).json({message:"Connected!"});
 })
 
 app.get('/arm/:state', function(req, res){
-    doorsms.setArmedState(req.params.state, function(state){
-        var msgToSend = '\nSystem '+((!state)?'dis':'')+'armed'
-        postMsg(msgToSend);
-        res.status(200).json({armed:state});
-    });
+    var isValid = req.params.state == 'false' || req.params.state == 'true';
+
+    if (isValid){
+        var state = req.params.state == 'true';
+        doorsms.setArmedState(state, function(state){
+
+            var msgToSend = '\nSystem '+((!state)?'dis':'')+'armed'
+            postMsg(msgToSend);
+            res.status(200).json({armed:state});
+        });
+    }
+    else {
+        res.status(400).json({error: "Invalid parameter. Either pass 'true' or 'false'"})
+    }
+
 })
 
 app.get('/events', function(req, res){
