@@ -1,6 +1,6 @@
 var gpio = require('rpi-gpio');
 var debounce = require('debounce');
-var next_state = false;
+var next_state = true;
 
 var armed = true;
 
