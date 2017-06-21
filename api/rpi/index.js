@@ -26,7 +26,7 @@ function createRpiInstance(pin, stateChangeCallback){
         gpio.destroy(function(){});
     }
 
-    function setArmedState(arm, callback){
+    var setArmedState = function(arm, callback){
         armed = arm;
         callback(armed);
     }

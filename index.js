@@ -38,9 +38,7 @@ app.get('/arm/:state', function(req, res){
 })
 
 app.get('/events', function(req, res){
-    rpi.setArmedState(req.params.state, function(state){
         res.status(200).json({events:events});
-    });
 })
 
 //Cleanup
