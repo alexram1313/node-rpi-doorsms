@@ -5,7 +5,7 @@ var next_state = false;
 var armed = true;
 
 //pin = 5 for testing
-function createRpiInstance(pin, stateChangeCallback){
+var createRpiInstance = function (pin, stateChangeCallback){
     gpio.on('change', debounce(function(channel, value) {
         if ((armed) && (value == next_state)){
             next_state = !value;

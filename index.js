@@ -23,6 +23,7 @@ var doorsms = rpi(5, function(openState){
     postMsg(msg+states[openState]);
 });
 
+console.log(doorsms);
 
 //Routing
 app.get('/', function(req, res){
