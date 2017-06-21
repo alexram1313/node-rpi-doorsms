@@ -36,7 +36,7 @@ module.exports = {
             mailOptions.text = "\n"+text;
             mailOptions.html = "\n<span>"+text+"</span>";
             // send mail with defined transport object
-            transporter.sendMail(mailOptions, (error, info) => {
+            transporter.sendMail(mailOptions, function(error, info) {
                 if (error) {
                     return console.log(error);
                 }
