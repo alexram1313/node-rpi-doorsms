@@ -30,6 +30,6 @@ function createRpiInstance(pin, stateChangeCallback){
         armed = arm;
         callback(armed);
     }
-}
+};
 
 module.exports = createRpiInstance;
