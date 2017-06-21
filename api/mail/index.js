@@ -21,7 +21,7 @@ fs.readFile('credpersonal.json', function(err, data){
     });
 
     mailOptions = {
-        from: '"RPi Door Sensor" <'+details.server+'>', // sender address
+        from: '"RPi Door Sensor" <'+details.from+'>', // sender address
         to: details.to, // list of receivers
         subject: 'Door Status', // Subject line
         text: 'Hello world', // plain text body
