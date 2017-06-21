@@ -22,14 +22,15 @@ var createRpiInstance = function (pin, stateChangeCallback){
     }, 115));
     gpio.setup(pin, gpio.DIR_HIGH, gpio.EDGE_BOTH);
 
-    var destroyRpiInstance = function (){
-        gpio.destroy(function(){});
-    }
-
-    var setArmedState = function(arm, callback){
-        armed = arm;
-        callback(armed);
-    }
+    return {
+        destroyRpiInstance: function (){
+            gpio.destroy(function(){});
+        },
+        setArmedState: function(arm, callback){
+            armed = arm;
+            callback(armed);
+        }
+    };
 };
 
 module.exports = createRpiInstance;
