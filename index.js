@@ -1,4 +1,4 @@
-var app  = require('express');
+var app  = require('express')();
 var rpi  = require('./api/rpi');
 var smtp = require('./api/mail');
 
