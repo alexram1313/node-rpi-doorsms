@@ -5,7 +5,7 @@ var ready = false;
 var transporter;
 var mailOptions;
 
-fs.readFile('cred.json', function(err, data){
+fs.readFile('credpersonal.json', function(err, data){
     if (err) throw err;
 
     details = JSON.parse(data);
