@@ -17,9 +17,11 @@ function postMsg(text){
     events.push(msgToSend);
 }
 
+//Pin Constant
+const PIN = 5
 
 //Instantiate our RPi doorsms API instance
-var doorsms = rpi(5, function(openState){
+var doorsms = rpi(PIN, function(openState){
     postMsg(msg+states[openState]);
 });
 
