@@ -1,12 +1,13 @@
+var gpio = require('rpi-gpio');
+var debounce = require('debounce');
+var next_state = false;
+
+var armed = true;
+
 //pin = 5 for testing
 function createRpiInstance(pin, stateChangeCallback){
-
-    var gpio = require('rpi-gpio');
-    var debounce = require('debounce');
-
-    var next_state = false;
     gpio.on('change', debounce(function(channel, value) {
-        if (value == next_state){
+        if ((armed) && (value == next_state)){
             next_state = !value;
             if (typeof(stateChangeCallback) === 'function'){
                 //callback(isClosed)
@@ -23,6 +24,12 @@ function createRpiInstance(pin, stateChangeCallback){
 
     function destroyRpiInstance(){
         gpio.destroy(function(){});
+    }
+
+    function setArmedState(arm, callback){
+        armed = arm;
+        console.log('System '+((!armed)?'dis':'')+'armed');
+        callback(armed);
     }
 }
 
