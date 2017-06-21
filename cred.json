@@ -1,4 +1,5 @@
 {
+    "server":"smtp.derp.com",
     "from":"derp@derp.com",
     "to":"5555555555@mms.derpprovider.net",
     "pass":"password"
