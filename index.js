@@ -3,7 +3,7 @@ var rpi  = require('./api/rpi');
 var smtp = require('./api/mail');
 
 //Message constants
-const msg = '\nDoor was ';
+const msg = 'Door was ';
 const states = {false: 'closed', true:'opened'}
 
 //Historical data
