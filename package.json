@@ -19,6 +19,7 @@
   "dependencies": {
     "debounce": "^1.0.2",
     "express": "^4.15.2",
-    "nodemailer": "^4.0.1"
+    "nodemailer": "^4.0.1",
+    "pigpio":"^0.6.0"
   }
 }
