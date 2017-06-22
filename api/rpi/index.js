@@ -1,4 +1,4 @@
-var gpio = require('rpi-gpio');
+var gpio = require('pigpio').Gpio
 var debounce = require('debounce');
 var next_state = true;
 
@@ -6,8 +6,15 @@ var armed = true;
 
 //pin = 5 for testing
 var createRpiInstance = function (pin, stateChangeCallback){
-    gpio.on('change', debounce(function(channel, value) {
-        if ((armed) && (value == next_state)){
+
+    var door = new gpio(pin, {
+        mode: gpio.INPUT,
+        pullUpDown: gpio.PUD_UP,
+        edge: gpio.EITHER_EDGE
+    });
+
+    door.on('interrupt', debounce(function (level) {
+         if ((armed) && (value == next_state)){
             next_state = !value;
             if (typeof(stateChangeCallback) === 'function'){
                 //callback(isClosed)
@@ -17,14 +24,11 @@ var createRpiInstance = function (pin, stateChangeCallback){
                 console.log('Channel ' + channel + ' open state is now ' + value);
             }
         }
-
-        
     }, 115));
-    gpio.setup(pin, gpio.DIR_IN, gpio.EDGE_BOTH);
 
     return {
         destroyRpiInstance: function (){
-            gpio.destroy(function(){});
+            door.pullUpDown(gpio.PUD_OFF);
         },
         setArmedState: function(arm, callback){
             armed = arm;

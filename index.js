@@ -18,7 +18,7 @@ function postMsg(text){
 }
 
 //Pin Constant
-const PIN = 5
+const PIN = 4;
 
 //Instantiate our RPi doorsms API instance
 var doorsms = rpi(PIN, function(openState){
@@ -37,7 +37,7 @@ app.get('/arm/:state', function(req, res){
         var state = req.params.state == 'true';
         doorsms.setArmedState(state, function(state){
 
-            var msgToSend = '\nSystem '+((!state)?'dis':'')+'armed'
+            var msgToSend = 'System '+((!state)?'dis':'')+'armed'
             postMsg(msgToSend);
             res.status(200).json({armed:state});
         });
