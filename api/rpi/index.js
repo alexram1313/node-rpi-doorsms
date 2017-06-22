@@ -16,6 +16,7 @@ var createRpiInstance = function (pin, stateChangeCallback){
     });
 
     door.on('interrupt', debounce(function (value) {
+        console.log(value);
          if ((armed) && (value == next_state)){
             next_state = !value;
             if (typeof(stateChangeCallback) === 'function'){
@@ -30,7 +31,7 @@ var createRpiInstance = function (pin, stateChangeCallback){
 
     return {
         destroyRpiInstance: function (){
-            door.pullUpDown(gpio.PUD_OFF);
+            door.pullUpDown(Gpio.PUD_OFF);
             door.disableInterrupt();
         },
         setArmedState: function(arm, callback){
