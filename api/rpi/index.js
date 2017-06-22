@@ -15,8 +15,8 @@ var createRpiInstance = function (pin, stateChangeCallback){
         edge: Gpio.EITHER_EDGE
     });
 
-    door.on('interrupt', debounce(function (value) {
-        console.log(value);
+    door.on('interrupt', debounce(function (level) {
+        value = level === 1;
          if ((armed) && (value == next_state)){
             next_state = !value;
             if (typeof(stateChangeCallback) === 'function'){
