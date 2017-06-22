@@ -6,9 +6,7 @@ var armed = true;
 
 //pin = 5 for testing
 var createRpiInstance = function (pin, stateChangeCallback){
-
-    console.log(pin);
-
+    
     var door = new Gpio(pin, {
         mode: Gpio.INPUT,
         pullUpDown: Gpio.PUD_UP,
