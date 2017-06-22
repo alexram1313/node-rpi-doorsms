@@ -33,8 +33,8 @@ fs.readFile('cred.json', function(err, data){
 module.exports = {
     sendMail: function(text){
         if (ready){
-            mailOptions.text = "\n"+text;
-            mailOptions.html = "\n<span>"+text+"</span>";
+            mailOptions.text = text;
+            mailOptions.html = "<span>"+text+"</span>";
             // send mail with defined transport object
             transporter.sendMail(mailOptions, function(error, info) {
                 if (error) {
