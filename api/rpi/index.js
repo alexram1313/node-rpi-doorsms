@@ -1,4 +1,4 @@
-var gpio = require('pigpio').Gpio
+var Gpio = require('pigpio').Gpio
 var debounce = require('debounce');
 var next_state = true;
 
@@ -9,10 +9,10 @@ var createRpiInstance = function (pin, stateChangeCallback){
 
     console.log(pin);
 
-    var door = new gpio(pin, {
-        mode: gpio.INPUT,
-        pullUpDown: gpio.PUD_UP,
-        edge: gpio.EITHER_EDGE
+    var door = new Gpio(pin, {
+        mode: Gpio.INPUT,
+        pullUpDown: Gpio.PUD_UP,
+        edge: Gpio.EITHER_EDGE
     });
 
     door.on('interrupt', debounce(function (level) {
