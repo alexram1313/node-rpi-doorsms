@@ -11,7 +11,7 @@ var createRpiInstance = function (pin, stateChangeCallback){
 
     var door = new gpio(4, {
         mode: gpio.INPUT,
-        pullUpDown: gpio.PUD_DOWN,
+        pullUpDown: gpio.PUD_UP,
         edge: gpio.EITHER_EDGE
     });
 
