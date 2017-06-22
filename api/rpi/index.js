@@ -29,6 +29,7 @@ var createRpiInstance = function (pin, stateChangeCallback){
     return {
         destroyRpiInstance: function (){
             door.pullUpDown(gpio.PUD_OFF);
+            door.disableInterrupt();
         },
         setArmedState: function(arm, callback){
             armed = arm;
