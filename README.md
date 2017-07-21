@@ -28,5 +28,5 @@ git clone https://github.com/alexram1313/node-rpi-doorsms
 
 - `/`: Returns a connected message
 - `/events`: Returns all recorded door state and arm state change events
-- `/arm/true`: Arms the system and records all door state changes
-- `/arm/false`: Disarms the system and disables recording door state changes
+- `/arm/true`: Arms the system and records all door state changes. Returns armed state if successful.
+- `/arm/false`: Disarms the system and disables recording door state changes. Returns armed state if successful.
