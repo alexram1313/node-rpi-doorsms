@@ -19,5 +19,7 @@ git clone https://github.com/alexram1313/node-rpi-doorsms
   - `from`: Your email address
   - `to`: Recipient email address or SMS Gateway address
   - `pass`: Your email password
-  
-3. Run using `sudo node index.js`
+
+3. Connect a normally-closed reed switch to ground and GPIO20 (can be changed in index.js)
+
+4. Run using `sudo node index.js`
