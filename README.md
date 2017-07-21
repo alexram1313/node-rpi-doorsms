@@ -23,3 +23,10 @@ git clone https://github.com/alexram1313/node-rpi-doorsms
 3. Connect a normally-closed reed switch to ground and GPIO20 (can be changed in index.js)
 
 4. Run using `sudo node index.js`
+
+## API
+
+- `/`: Returns a connected message
+- `/events`: Returns all recorded door state and arm state change events
+- `/arm/true`: Arms the system and records all door state changes
+- `/arm/false`: Disarms the system and disables recording door state changes
