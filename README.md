@@ -26,6 +26,7 @@ git clone https://github.com/alexram1313/node-rpi-doorsms
 
 ## API
 
+Using HTTP GET requests
 - `/`: Returns a connected message
 - `/events`: Returns all recorded door state and arm state change events
 - `/arm/true`: Arms the system and records all door state changes. Returns armed state if successful.
