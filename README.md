@@ -8,9 +8,9 @@ See the video: https://www.youtube.com/watch?v=wQlXgi7THG8
 
 1. Clone the GitHub repo
 
-'''
+```
 git clone https://github.com/alexram1313/node-rpi-doorsms
-'''
+```
 
 2. Change the information in cred.json to your details.
 
