@@ -3,5 +3,6 @@
     "port":587,
     "from":"derp@derp.com",
     "to":"5555555555@mms.derpprovider.net",
-    "pass":"password"
+    "pass":"password",
+    "server_key":"YOUR_SERVER_KEY_HERE"
 }
