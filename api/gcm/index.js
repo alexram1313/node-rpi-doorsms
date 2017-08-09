@@ -1,6 +1,6 @@
 var gcm = require('node-gcm');
 // var cred = require('./../../cred.json');
-var cred = require('./../../credperson.json');
+var cred = require('./../../credpersonal.json');
 
 //Functions
 var createGcmInstance = function(){
