@@ -24,7 +24,8 @@ var createGcmInstance = function(){
         message.addNotification({
             title: text,
             body: text+" courtesy of your door sensor.",
-            icon: 'ic_launcher'
+            icon: 'ic_launcher',
+            sound: 'default'
         });
 
         sender.send(message, { registrationTokens: regTokens }, function (err, response) {
