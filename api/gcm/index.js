@@ -7,7 +7,7 @@ var createGcmInstance = function(){
     var sender = gcm.Sender(cred.server_key);
     var regTokens = [];
 
-    var sendMsg = function(text){
+    var sendMsg = function(text, onErr){
         var message = new gcm.Message({
             priority: 'high',
             contentAvailable: true,
@@ -32,6 +32,7 @@ var createGcmInstance = function(){
             if(err) {
                 console.log("Error");
                 console.error(err);
+                if (typeof(onErr) !== 'undefined') onErr();
             }
             else {
                 console.log("Success");

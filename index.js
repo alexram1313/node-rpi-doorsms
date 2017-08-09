@@ -13,8 +13,10 @@ var events = new Array();
 function postMsg(text){
     var time = new Date(new Date().getTime()).toLocaleTimeString();
     var msgToSend = text + ' at ' + time;
-    smtp.sendMail(msgToSend);
-    gcm.sendMsg(msgToSend);
+    
+    gcm.sendMsg(msgToSend, function(){
+        smtp.sendMail(msgToSend + "\n*App notification failed to send");
+    });
     console.log(msgToSend);
     events.push(msgToSend);
 }
