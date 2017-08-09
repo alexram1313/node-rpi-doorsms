@@ -1,6 +1,7 @@
 var app  = require('express')();
 var rpi  = require('./api/rpi');
 var smtp = require('./api/mail');
+var gcm  = require('./api/gcm')();
 
 //Message constants
 const msg = 'Door was ';
@@ -12,7 +13,10 @@ var events = new Array();
 function postMsg(text){
     var time = new Date(new Date().getTime()).toLocaleTimeString();
     var msgToSend = text + ' at ' + time;
-    smtp.sendMail(msgToSend);
+    
+    gcm.sendMsg(msgToSend, function(){
+        smtp.sendMail(msgToSend + "\n*App notification failed to send");
+    });
     console.log(msgToSend);
     events.push(msgToSend);
 }
@@ -50,7 +54,14 @@ app.get('/arm/:state', function(req, res){
 
 app.get('/events', function(req, res){
     res.status(200).json({events:events});
-})
+});
+
+
+app.get('/regtoken/:token', function(req, res){
+    gcm.insertRegToken(req.params.token);
+    res.status(200).json({msg:"Success!"});
+});
+
 
 //Cleanup
 function exitHandler(options, err) {
