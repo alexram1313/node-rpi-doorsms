@@ -56,7 +56,7 @@ app.get('/events', function(req, res){
 
 
 app.get('/regtoken/:token', function(req, res){
-    gcmObj.insertRegToken(req.params.token);
+    gcm.insertRegToken(req.params.token);
     res.status(200).json({msg:"Success!"});
 });
 
